@@ -3,8 +3,9 @@ package com.pcwang.entity;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
-public class User {
+public class User implements Serializable {
 
 
     private Integer uid;
@@ -15,6 +16,15 @@ public class User {
     private String password;
     private Integer age;
 
+    public User() {
+    }
+
+    public User(Integer uid, @NotBlank String name, @NotBlank @Length(min = 6, message = "密码长度不能少于六位") String password, Integer age) {
+        this.uid = uid;
+        this.name = name;
+        this.password = password;
+        this.age = age;
+    }
 
     public Integer getUid() {
         return uid;
